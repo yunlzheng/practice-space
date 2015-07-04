@@ -8,40 +8,87 @@
 
 import UIKit
 
-var restaurantNames = ["Cafe Deadend", "Homei", "Teakha", "Cafe Loisl", "Petite Oyster",
-    "ForKee Restaurant", "Po's Atelier", "Bourke Street Bakery", "Haigh's Chocolate",
-    "PalominoEspresso", "Upstate", "Traif", "Graham Avenue Meats", "Waffle & Wolf",
-    "Five Leaves", "CafeLore", "Confessional", "Barrafina", "Donostia", "Royal Oak", "Thai Cafe"]
 
-var restaurantImages = ["cafedeadend.jpg", "homei.jpg", "teakha.jpg", "cafeloisl.jpg",
-    "petiteoyster.jpg", "forkeerestaurant.jpg", "posatelier.jpg", "bourkestreetbakery.jpg",
-    "haighschocolate.jpg", "palominoespresso.jpg", "upstate.jpg", "traif.jpg",
-    "grahamavenuemeats.jpg", "wafflewolf.jpg", "fiveleaves.jpg", "cafelore.jpg",
-    "confessional.jpg", "barrafina.jpg", "donostia.jpg", "royaloak.jpg", "thaicafe.jpg"]
-
-var restaurantLocations = ["Hong Kong", "HongKong", "Hong Kong", "Hong Kong", "Hong Kong",
-        "HongKong", "Hong Kong", "Sydney", "Sydney", "Sydney",
-        "New York", "New York", "New York", "New York", "NewYork",
-        "New York", "New York", "London", "London",
-        "London", "London"]
-
-var restaurantTypes = ["Coffee & Tea Shop",
-        "Cafe", "Tea House", "Austrian / Causual Drink",
-        "French", "Bakery", "Bakery", "Chocolate", "Cafe",
-        "American / Seafood", "American", "American",
-        "Breakfast & Brunch", "Coffee & Tea", "Coffee &Tea", "Latin American", "Spanish", "Spanish",
-        "Spanish", "British", "Thai"]
 
 
 class RestaurantTableViewController: UITableViewController {
 
     var restaurantIsVisited = [Bool](count: 21, repeatedValue: false)
 
+    var restaurantNames = ["Cafe Deadend", "Homei", "Teakha", "Cafe Loisl", "Petite Oyster",
+        "ForKee Restaurant", "Po's Atelier", "Bourke Street Bakery", "Haigh's Chocolate",
+        "PalominoEspresso", "Upstate", "Traif", "Graham Avenue Meats", "Waffle & Wolf",
+        "Five Leaves", "CafeLore", "Confessional", "Barrafina", "Donostia", "Royal Oak", "Thai Cafe"]
+    
+    var restaurantImages = ["cafedeadend.jpg", "homei.jpg", "teakha.jpg", "cafeloisl.jpg",
+        "petiteoyster.jpg", "forkeerestaurant.jpg", "posatelier.jpg", "bourkestreetbakery.jpg",
+        "haighschocolate.jpg", "palominoespresso.jpg", "upstate.jpg", "traif.jpg",
+        "grahamavenuemeats.jpg", "wafflewolf.jpg", "fiveleaves.jpg", "cafelore.jpg",
+        "confessional.jpg", "barrafina.jpg", "donostia.jpg", "royaloak.jpg", "thaicafe.jpg"]
+    
+    var restaurantLocations = ["Hong Kong", "HongKong", "Hong Kong", "Hong Kong", "Hong Kong",
+            "HongKong", "Hong Kong", "Sydney", "Sydney", "Sydney",
+            "New York", "New York", "New York", "New York", "NewYork",
+            "New York", "New York", "London", "London",
+            "London", "London"]
+    
+    var restaurantTypes = ["Coffee & Tea Shop",
+        "Cafe", "Tea House", "Austrian / Causual Drink",
+        "French", "Bakery", "Bakery", "Chocolate", "Cafe",
+        "American / Seafood", "American", "American",
+        "Breakfast & Brunch", "Coffee & Tea", "Coffee &Tea", "Latin American", "Spanish", "Spanish",
+        "Spanish", "British", "Thai"]
+    
             
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return restaurantNames.count
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+            
+            let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share", handler: {
+                (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+        
+                let shareMenu = UIAlertController(title: nil, message: "Share Using.", preferredStyle: .ActionSheet)
+        
+                let qqAction = UIAlertAction(title: "QQ", style: UIAlertActionStyle.Default, handler: nil)
+                let weiboAction = UIAlertAction(title: "Weibo", style: UIAlertActionStyle.Default, handler: nil)
+                let weChatAction = UIAlertAction(title: "WeChat", style: UIAlertActionStyle.Default, handler: nil)
+                let cancleAction = UIAlertAction(title: "Cancle", style: UIAlertActionStyle.Cancel, handler: nil)
+        
+                shareMenu.addAction(qqAction)
+                shareMenu.addAction(weiboAction)
+                shareMenu.addAction(weChatAction)
+                shareMenu.addAction(cancleAction)
+        
+                self.presentViewController(shareMenu, animated: true, completion: nil)
+            
+            })
+            
+            let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler: {
+                (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+        
+        
+                self.restaurantNames.removeAtIndex(indexPath.row)
+                self.restaurantTypes.removeAtIndex(indexPath.row)
+                self.restaurantLocations.removeAtIndex(indexPath.row)
+                self.restaurantIsVisited.removeAtIndex(indexPath.row)
+                self.restaurantImages.removeAtIndex(indexPath.row)
+        
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        
+            })
+            
+            shareAction.backgroundColor = UIColor(red: 255.0/255.0, green: 166.0/255.0, blue: 51.0/255.0, alpha: 1.0)
+            deleteAction.backgroundColor = UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 1.0)
+        
+            return [shareAction, deleteAction]
+    }
+            
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIdentifiler = "Cell"
