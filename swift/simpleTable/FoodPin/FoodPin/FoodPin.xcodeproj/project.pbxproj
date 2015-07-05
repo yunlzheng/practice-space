@@ -18,6 +18,7 @@
 		18D948001B482FD700F3C643 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D947FF1B482FD700F3C643 /* Restaurant.swift */; };
 		18D948021B4836A000F3C643 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D948011B4836A000F3C643 /* DetailTableViewCell.swift */; };
 		18D948051B48E3B600F3C643 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D948041B48E3B600F3C643 /* ReviewViewController.swift */; };
+		18D948071B492B2900F3C643 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D948061B492B2900F3C643 /* ShareViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		18D947FF1B482FD700F3C643 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		18D948011B4836A000F3C643 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		18D948041B48E3B600F3C643 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		18D948061B492B2900F3C643 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				18D947F91B47F4D000F3C643 /* RestaurantTableViewController.swift */,
 				18D947D91B47F3C500F3C643 /* AppDelegate.swift */,
 				18D947DD1B47F3C500F3C643 /* Main.storyboard */,
+				18D948061B492B2900F3C643 /* ShareViewController.swift */,
 				18D948041B48E3B600F3C643 /* ReviewViewController.swift */,
 				18D947FF1B482FD700F3C643 /* Restaurant.swift */,
 				18D947FD1B48260200F3C643 /* DetailViewController.swift */,
@@ -233,6 +236,7 @@
 				18D947FC1B47FC1D00F3C643 /* CustomTableViewCell.swift in Sources */,
 				18D947FA1B47F4D000F3C643 /* RestaurantTableViewController.swift in Sources */,
 				18D947DA1B47F3C500F3C643 /* AppDelegate.swift in Sources */,
+				18D948071B492B2900F3C643 /* ShareViewController.swift in Sources */,
 				18D947FE1B48260200F3C643 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
