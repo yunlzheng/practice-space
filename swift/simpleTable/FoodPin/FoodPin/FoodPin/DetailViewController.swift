@@ -8,24 +8,89 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     @IBOutlet weak var restaurantImageView: UIImageView!
-    var restaurantImage: String!
+    @IBOutlet var tableView:UITableView!
+    var restaurant: Restaurant!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        restaurantImageView.image = UIImage(named: restaurantImage)
+        restaurantImageView.image = UIImage(named: restaurant.image)
+        
+        // change table view background color
+        self.tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue:
+            240.0/255.0, alpha: 0.2)
+        
+        // remove the extra separator
+        self.tableView.tableFooterView = UIView(frame:
+            CGRectZero)
+        
+        // change the color of the separator
+        self.tableView.separatorColor = UIColor(red:
+                240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0,
+                alpha: 0.8)
+        
+        title = self.restaurant.name
+        
+        self.tableView.estimatedRowHeight = 36.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
     }
 
+    override func viewWillAppear(animated: Bool) {
+            navigationController?.hidesBarsOnSwipe = false
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+                return .LightContent
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as DetailTableViewCell
+        
+        cell.backgroundColor = UIColor.clearColor()
+        
+        switch indexPath.row {
+            case 0:
+                cell.fieldLabel.text = "Name"
+                cell.valueLabel.text = self.restaurant.name
+            case 1:
+                cell.fieldLabel.text = "Type"
+                cell.valueLabel.text = self.restaurant.type
+            case 2:
+                cell.fieldLabel.text = "Location"
+                cell.valueLabel.text = self.restaurant.location
+            case 3:
+                cell.fieldLabel.text = "Been Here?"
+                cell.valueLabel.text = self.restaurant.isVisited ? "YES! i have been here" : "No"
+            default:
+                cell.fieldLabel.text = ""
+                cell.valueLabel.text = ""
+        }
+        
+        return cell
+        
+    }
 
+    @IBAction func close(segue:UIStoryboardSegue) {
+            println("close")
+    }
+    
     /*
     // MARK: - Navigation
 
