@@ -38,6 +38,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.estimatedRowHeight = 36.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: nil)
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -65,6 +67,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.backgroundColor = UIColor.clearColor()
         
+        cell.mapButton.hidden = true
         switch indexPath.row {
             case 0:
                 cell.fieldLabel.text = "Name"
@@ -78,6 +81,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             case 3:
                 cell.fieldLabel.text = "Been Here?"
                 cell.valueLabel.text = self.restaurant.isVisited ? "YES! i have been here" : "No"
+                cell.mapButton.hidden = false
             default:
                 cell.fieldLabel.text = ""
                 cell.valueLabel.text = ""
@@ -87,6 +91,17 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            
+            if segue.identifier == "showMap" {
+        
+                let destinationController = segue.destinationViewController as MapViewController
+                destinationController.restaurant = restaurant
+        
+            }
+            
+    }
+    
     @IBAction func close(segue:UIStoryboardSegue) {
             println("close")
     }
